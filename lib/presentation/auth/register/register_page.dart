@@ -249,8 +249,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     schoolName: _schoolNameTextController.text,
                                     schoolLevel: 'SMA',
                                     schoolGrade: selectedKelas!,
-                                    photoUrl:
-                                        'https://avatars.githubusercontent.com/u/61449421?v=4');
+                                    photoUrl: 'url_foto');
                             final bool isSuccessRegister = await controller
                                 .registerUser(userBody: userBody);
                             if (isSuccessRegister) {
