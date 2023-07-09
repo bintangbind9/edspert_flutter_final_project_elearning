@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "787200647060",
+    "project_id": "elearning-ae8a2",
+    "storage_bucket": "elearning-ae8a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787200647060:android:8c4200260c9863e26db981",
+        "android_client_info": {
+          "package_name": "id.edspert.elearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787200647060-ru7246cf54uontuc0462qbm3bv20tacu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.edspert.elearning",
+            "certificate_hash": "581467dfbb919d369706d95afd662f54a0978c96"
+          }
+        },
+        {
+          "client_id": "787200647060-64oaqv4ir0dpg1r4b4qvu85qvgh9lmsk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPaIHoVqUTDtiQynCOG7OFsZ3IatRTy5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787200647060-64oaqv4ir0dpg1r4b4qvu85qvgh9lmsk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "787200647060-85og6pa3uv2vfp26fks0nf4dgk4957t3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.edspertFlutterFinalProjectElearning.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

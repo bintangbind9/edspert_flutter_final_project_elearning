@@ -7,5 +7,5 @@ class GetUserByEmailUseCase {
 
   GetUserByEmailUseCase({required this.repository});
 
-  Future<User?> call(String email) async => await repository.getUserByEmail(email: email);
+  Future<User?> call({required String email}) async => await repository.getUserByEmail(email: email);
 }

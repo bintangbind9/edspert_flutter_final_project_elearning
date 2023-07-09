@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>787200647060-85og6pa3uv2vfp26fks0nf4dgk4957t3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.787200647060-85og6pa3uv2vfp26fks0nf4dgk4957t3</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>787200647060-ru7246cf54uontuc0462qbm3bv20tacu.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC3aJDq195_PWrBvqQJaDxjJSljQJNH124</string>
+	<key>GCM_SENDER_ID</key>
+	<string>787200647060</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.edspertFlutterFinalProjectElearning.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>elearning-ae8a2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>elearning-ae8a2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:787200647060:ios:8221a23c525da4596db981</string>
+</dict>
+</plist>

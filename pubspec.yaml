@@ -1,5 +1,5 @@
 name: edspert_flutter_final_project_elearning
-description: A new Flutter project.
+description: E-Learning.
 publish_to: 'none'
 version: 0.1.0
 
@@ -94,4 +94,5 @@ flutter:
           style: italic
 
   assets:
-    - assets/
+    - assets/icon/
+    - assets/images/

@@ -7,5 +7,5 @@ class RegisterUserUseCase {
 
   RegisterUserUseCase({required this.repository});
 
-  Future<bool> call(UserRegistrationRequest userBody) async => await repository.registerUser(userBody: userBody);
+  Future<bool> call({required UserRegistrationRequest userBody}) async => await repository.registerUser(userBody: userBody);
 }
