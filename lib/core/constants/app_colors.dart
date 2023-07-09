@@ -14,7 +14,9 @@ class AppColors {
   static const Color grayscaleLabel = Color(0xFF85868B);
   static const Color grayscalePlaceholder = Color(0xFFBFC0C2);
   static const Color grayscaleLine = Color(0xFFE4E4E5);
+  static const Color grayscaleOutLine = Color(0xFF9C9AA1);
   static const Color grayscaleInputBackground = Color(0xFFF6F6F6);
-  static const Color grayscaleBackground = Color(0xFFF9F9F9);
+  static const Color grayscaleBackground = Color(0xFFF3F7F8); // Color(0xFFF9F9F9)
   static const Color grayscaleOffWhite = Color(0xFFFCFCFC);
+  static const Color mint = Color(0xFF01B1AF);
 }
