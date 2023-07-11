@@ -1,6 +1,6 @@
 class Question {
-    final String? exerciseIdFk;
-    final String? bankQuestionId;
+    final String? exerciseId;
+    final String? questionId;
     final String? questionTitle;
     final String? questionTitleImg;
     final String? optionA;
@@ -16,8 +16,8 @@ class Question {
     final String? studentAnswer;
 
     Question({
-        this.exerciseIdFk,
-        this.bankQuestionId,
+        this.exerciseId,
+        this.questionId,
         this.questionTitle,
         this.questionTitleImg,
         this.optionA,
@@ -34,8 +34,8 @@ class Question {
     });
 
     factory Question.fromJson(Map<String, dynamic> json) => Question(
-        exerciseIdFk: json["exercise_id_fk"],
-        bankQuestionId: json["bank_question_id"],
+        exerciseId: json["exercise_id_fk"],
+        questionId: json["bank_question_id"],
         questionTitle: json["question_title"],
         questionTitleImg: json["question_title_img"],
         optionA: json["option_a"],
@@ -52,8 +52,8 @@ class Question {
     );
 
     Map<String, dynamic> toJson() => {
-        "exercise_id_fk": exerciseIdFk,
-        "bank_question_id": bankQuestionId,
+        "exercise_id_fk": exerciseId,
+        "bank_question_id": questionId,
         "question_title": questionTitle,
         "question_title_img": questionTitleImg,
         "option_a": optionA,
