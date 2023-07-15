@@ -1,12 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../../../core/constants/asset_images.dart';
+import '../home_controller.dart';
 
 class HomeProfileWidget extends StatelessWidget {
   const HomeProfileWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final HomeController controller = Get.find<HomeController>();
     return Container(
       height: 80,
       color: Colors.transparent,
@@ -14,19 +17,28 @@ class HomeProfileWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Hai, Altop',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-              ),
-              Text('Selamat Datang',
+              Obx(() => Text(
+                    'Hai, ${controller.currentUser.value.userName ?? ''}',
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w600),
+                  )),
+              const Text('Selamat Datang',
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
             ],
           ),
-          Image.asset(AssetImages.imgProfilePictPng, width: 35, height: 35),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(35),
+            child: Obx(() => CachedNetworkImage(
+                imageUrl: controller.currentUser.value.userFoto ?? '',
+                width: 35,
+                height: 35,
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error) => const Icon(Icons.person))),
+          ),
         ],
       ),
     );

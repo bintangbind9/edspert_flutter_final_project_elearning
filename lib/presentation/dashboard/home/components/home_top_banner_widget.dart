@@ -23,7 +23,7 @@ class HomeTopBannerWidget extends StatelessWidget {
                 'Mau kerjain latihan soal apa hari ini?',
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.w700),
               ),
             ),

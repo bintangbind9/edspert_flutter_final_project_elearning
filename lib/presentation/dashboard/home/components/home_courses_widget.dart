@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +21,7 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
   void initState() {
     super.initState();
 
-    Get.find<HomeController>().getCourses();
+    Get.find<HomeController>().getHomeDatas();
   }
 
   @override
@@ -49,7 +50,7 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
                     ),
                 ],
               ),
-            if (controller.isGetCoursesLoading == true)
+            if (controller.isHomeLoading == true)
               const Center(child: CircularProgressIndicator())
             else
               ListView.builder(
@@ -102,10 +103,14 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
                               borderRadius: BorderRadius.circular(10),
                               color: const Color.fromARGB(255, 243, 247, 248),
                             ),
-                            child: Image.network(
-                              course.urlCover ?? AssetImages.imgNoImagePng,
-                              fit: BoxFit.contain,
-                            ),
+                            child: CachedNetworkImage(
+                                imageUrl: course.urlCover ??
+                                    AssetImages.imgNoImagePng,
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                                fit: BoxFit.contain),
                           ),
                           onTap: () {
                             Get.toNamed(
