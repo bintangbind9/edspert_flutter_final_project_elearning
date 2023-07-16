@@ -19,4 +19,6 @@ class AppColors {
   static const Color grayscaleBackground = Color(0xFFF3F7F8); // Color(0xFFF9F9F9)
   static const Color grayscaleOffWhite = Color(0xFFFCFCFC);
   static const Color mint = Color(0xFF01B1AF);
+  static const Color disableText = Color(0xFF949698);
+  static const Color disable = Color(0xFFD8DCDE);
 }

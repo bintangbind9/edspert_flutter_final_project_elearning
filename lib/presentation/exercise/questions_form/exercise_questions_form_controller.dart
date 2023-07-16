@@ -1,3 +1,5 @@
+import 'package:edspert_flutter_final_project_elearning/core/constants/constants.dart';
+import 'package:edspert_flutter_final_project_elearning/core/constants/general_values.dart';
 import 'package:edspert_flutter_final_project_elearning/data/model/exercise_answers_request.dart';
 import 'package:edspert_flutter_final_project_elearning/domain/use_case/course/get_exercise_result_use_case.dart';
 import 'package:edspert_flutter_final_project_elearning/domain/use_case/course/get_questions_use_case.dart';
@@ -111,7 +113,7 @@ class ExerciseQuestionsFormController extends GetxController {
       submitAnswerLoading = true;
       update();
 
-      if (questionAnswers.length == 10) {
+      if (!questionAnswers.any((element) => element.answer == GeneralValues.defaultAnswer)) {
         List<String> questionIds =
             questionAnswers.map((e) => e.questionId).toList();
         List<String> answers = questionAnswers.map((e) => e.answer).toList();
@@ -136,8 +138,7 @@ class ExerciseQuestionsFormController extends GetxController {
         submitAnswerLoading = false;
         update();
       } else {
-        Get.snackbar('Semua harus diisi!', 'Periksa kembali jawaban anda.',
-            snackPosition: SnackPosition.BOTTOM);
+        Get.snackbar('Semua harus diisi!', 'Periksa kembali jawaban anda.', backgroundColor: AppColors.warning);
       }
     }
   }
