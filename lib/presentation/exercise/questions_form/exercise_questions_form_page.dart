@@ -26,7 +26,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
         builder: (controller) {
           List<Question> questions = controller.questionList;
           int activeQuestionIndex = controller.activeQuestionIndex;
-          if (questions.isEmpty) {
+          if (questions.isEmpty || controller.submitAnswerLoading) {
             return const Center(child: CircularProgressIndicator());
           }
           Question activeQuestion = questions[activeQuestionIndex];

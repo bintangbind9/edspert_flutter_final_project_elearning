@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/app_colors.dart';
+import '../../../core/constants/asset_images.dart';
 import 'exercise_result_controller.dart';
 
 class ExerciseResultPage extends GetView<ExerciseResultController> {
@@ -10,57 +12,79 @@ class ExerciseResultPage extends GetView<ExerciseResultController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: AppColors.primary,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: TextButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.close_outlined,
-                        color: AppColors.grayscaleOffWhite,
-                      ),
-                      SizedBox(width: 8),
-                      Text(
-                        'Tutup',
-                        style: TextStyle(color: AppColors.grayscaleOffWhite),
-                      ),
-                    ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.close_outlined,
+                          color: AppColors.grayscaleOffWhite,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          'Tutup',
+                          style: TextStyle(color: AppColors.grayscaleOffWhite),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 60),
-              const Text(
-                'Selamat',
-                style: TextStyle(
-                  color: AppColors.grayscaleOffWhite,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500,
+                const SizedBox(height: 60),
+                Text(
+                  controller.isSuccessGetResult ? 'Selamat' : 'Mohon maaf,',
+                  style: const TextStyle(
+                    color: AppColors.grayscaleOffWhite,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Nilai Kamu: ${controller.resultScore}',
-                style: const TextStyle(
-                  color: AppColors.grayscaleOffWhite,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                Text(
+                    controller.isSuccessGetResult
+                        ? 'Kamu telah menyelesaikan Kuiz ini'
+                        : controller.getResultMessage,
+                    style: const TextStyle(
+                        color: AppColors.grayscaleOffWhite,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.center),
+                const SizedBox(height: 36),
+                SvgPicture.asset(AssetImages.imgChampionSvg),
+                const SizedBox(height: 36),
+                const Text(
+                  'Nilai Kamu:',
+                  style: TextStyle(
+                    color: AppColors.grayscaleOffWhite,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 32),
-            ],
+                const SizedBox(height: 8),
+                Text(
+                  controller.resultScore,
+                  style: const TextStyle(
+                    color: AppColors.grayscaleOffWhite,
+                    fontSize: 96,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ),
       ),

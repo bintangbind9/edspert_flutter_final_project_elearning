@@ -1,5 +1,6 @@
 import 'package:edspert_flutter_final_project_elearning/core/constants/constants.dart';
 import 'package:edspert_flutter_final_project_elearning/core/constants/general_values.dart';
+import 'package:edspert_flutter_final_project_elearning/data/model/arguments/exercise_result_page_args.dart';
 import 'package:edspert_flutter_final_project_elearning/data/model/exercise_answers_request.dart';
 import 'package:edspert_flutter_final_project_elearning/domain/use_case/course/get_exercise_result_use_case.dart';
 import 'package:edspert_flutter_final_project_elearning/domain/use_case/course/get_questions_use_case.dart';
@@ -113,33 +114,43 @@ class ExerciseQuestionsFormController extends GetxController {
       submitAnswerLoading = true;
       update();
 
-      if (!questionAnswers.any((element) => element.answer == GeneralValues.defaultAnswer)) {
+      if (!questionAnswers
+          .any((element) => element.answer == GeneralValues.defaultAnswer)) {
         List<String> questionIds =
             questionAnswers.map((e) => e.questionId).toList();
         List<String> answers = questionAnswers.map((e) => e.answer).toList();
 
         /// Submit Answer API Call
-        bool submitAnswersResult = await submitAnswersUseCase.call(
+        bool isSuccessSubmitAnswers = await submitAnswersUseCase.call(
             exerciseAnswersRequest: ExerciseAnswersRequest(
                 userEmail: email,
                 exerciseId: exerciseId,
                 bankQuestionId: questionIds,
                 studentAnswer: answers));
 
-        if (submitAnswersResult == true) {
+        if (isSuccessSubmitAnswers) {
           /// Get Exercise Result API Call
           ExerciseResultData? exerciseResult = await getExerciseResultUseCase
               .call(exerciseId: exerciseId, email: email);
-          if (exerciseResult != null) {
-            Get.offNamed(Routes.exerciseResult,
-                arguments: exerciseResult.result?.jumlahScore ?? "0");
-          }
+          Get.offNamed(Routes.exerciseResult,
+              arguments: ExerciseResultPageArgs(
+                  resultScore: exerciseResult != null
+                      ? (exerciseResult.result?.jumlahScore ?? "0")
+                      : "?",
+                  isSuccess: exerciseResult != null ? true : false,
+                  message: exerciseResult != null
+                      ? 'Success'
+                      : 'Jawabanmu berhasil dikirim, tapi gagal melihat nilaimu.'));
+        } else {
+          Get.snackbar('Failed!', 'Gagal kirim jawaban.',
+              backgroundColor: AppColors.warning);
         }
-        submitAnswerLoading = false;
-        update();
       } else {
-        Get.snackbar('Semua harus diisi!', 'Periksa kembali jawaban anda.', backgroundColor: AppColors.warning);
+        Get.snackbar('Semua harus diisi!', 'Periksa kembali jawaban anda.',
+            backgroundColor: AppColors.warning);
       }
+      submitAnswerLoading = false;
+      update();
     }
   }
 }
