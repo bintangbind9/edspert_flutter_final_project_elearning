@@ -1,10 +1,10 @@
+import 'package:edspert_flutter_final_project_elearning/core/constants/constants.dart';
 import 'package:edspert_flutter_final_project_elearning/core/constants/general_values.dart';
 import 'package:edspert_flutter_final_project_elearning/presentation/widgets/common_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 
-import '../../../core/constants/app_colors.dart';
 import '../../../data/model/question.dart';
 import 'exercise_questions_form_controller.dart';
 
@@ -213,31 +213,51 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                                   children: [
                                     Column(
                                       children: [
+                                        const SizedBox(height: 32),
+                                        Image.asset(
+                                            AssetImages.imgSubmitExercisePng,
+                                            width: 286,
+                                            height: 119,
+                                            fit: BoxFit.contain),
                                         const SizedBox(height: 16),
                                         const Text(
-                                            'Kumpulkan latihan soal sekarang?'),
-                                        const SizedBox(height: 16),
+                                            'Kumpulkan latihan soal sekarang?',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700)),
+                                        const SizedBox(height: 8),
+                                        const Text(
+                                            'Boleh langsung kumpulin dong',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Color(0xFF9C9C9C))),
+                                        const SizedBox(height: 32),
                                         Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
                                           children: [
-                                            const SizedBox(width: 32),
+                                            const SizedBox(width: 46),
                                             Expanded(
-                                              child: OutlinedButton(
-                                                onPressed: () {
-                                                  Get.back();
-                                                },
-                                                child: const Text('Nanti Dulu'),
-                                              ),
+                                              child: CommonButton(
+                                                  onPressed: () {
+                                                    Get.back();
+                                                  },
+                                                  text: 'Nanti Dulu',
+                                                  textColor: AppColors.primary,
+                                                  backgroundColor: AppColors
+                                                      .grayscaleOffWhite,
+                                                  borderColor:
+                                                      AppColors.primary),
                                             ),
-                                            const SizedBox(width: 32),
+                                            const SizedBox(width: 12),
                                             Expanded(
-                                              child: ElevatedButton(
+                                              child: CommonButton(
                                                   onPressed: () {
                                                     Get.back();
                                                     controller.submitAnswers();
                                                   },
-                                                  child: const Text('Ya')),
+                                                  text: 'Ya'),
                                             ),
-                                            const SizedBox(width: 32),
+                                            const SizedBox(width: 46),
                                           ],
                                         ),
                                         const SizedBox(height: 32),
