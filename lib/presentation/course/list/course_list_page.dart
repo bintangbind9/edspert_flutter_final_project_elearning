@@ -31,6 +31,7 @@ class CourseListPage extends GetView<CourseListController> {
             List<Course> courses = courseController.courseList;
 
             return ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 22),
               shrinkWrap: true,
               itemCount: courses.length,
               itemBuilder: (context, index) {
