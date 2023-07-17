@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:edspert_flutter_final_project_elearning/presentation/widgets/common_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/constants/app_colors.dart';
 import 'edit/profile_edit_page.dart';
 import 'profile_controller.dart';
 
@@ -19,22 +22,26 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
 
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
-      title: const Text('Akun Saya'),
-      backgroundColor: const Color(0xff3A7FD5),
+      title: const Text('Akun Saya',
+          style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 20,
+              color: AppColors.grayscaleOffWhite)),
+      backgroundColor: AppColors.primary,
       centerTitle: true,
       actions: [
         TextButton(
           onPressed: () => redirectToEditPage(
             ProfileEditArgs(
-              name: 'Blabla',
-              email: 'aaaaa@g.com',
-              jenisKelamin: 'Laki-laki',
+              name: controller.currentUser.value.userName ?? '',
+              email: controller.currentUser.value.userEmail ?? '',
+              jenisKelamin: controller.currentUser.value.userGender ?? '',
             ),
           ),
           child: const Text(
             'Edit',
             style: TextStyle(
-              color: Colors.white,
+              color: AppColors.grayscaleOffWhite,
             ),
           ),
         ),
@@ -42,8 +49,8 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
       bottom: buildBottomAppBar(context),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(16),
-          bottomRight: Radius.circular(16),
+          bottomLeft: Radius.circular(10),
+          bottomRight: Radius.circular(10),
         ),
       ),
     );
@@ -56,48 +63,52 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
 
   PreferredSizeWidget buildBottomAppBar(BuildContext context) {
     return PreferredSize(
-      preferredSize: Size(Get.width, 60),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Fajrin Arrahman',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    'SMAN 1 Kediri',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
+      preferredSize: Size(Get.width, 120),
+      child: Container(
+        padding: const EdgeInsets.all(24),
+        height: 120,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Obx(() => Text(
+                      controller.currentUser.value.userName ?? '',
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: AppColors.grayscaleOffWhite,
+                      ),
+                    )),
+                const SizedBox(
+                  height: 8,
+                ),
+                Obx(() => Text(
+                      controller.currentUser.value.userAsalSekolah ?? '',
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppColors.grayscaleOffWhite,
+                      ),
+                    )),
+              ],
             ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(36),
-            child: Image.network(
-              'https://cdn1-production-images-kly.akamaized.net/H6frj65JGbLKYO7MVWUlp3tD8tc=/1200x1200/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2117358/original/087611600_1524566686-2._Steve_Jobs_-_JUSTIN_SULLIVAN__GETTY_IMAGES_NORTH_AMERICA__AFP.jpg',
-              width: 50,
-              height: 50,
-              fit: BoxFit.cover,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Obx(() => CachedNetworkImage(
+                    imageUrl: controller.currentUser.value.userFoto ?? '',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.person),
+                  )),
             ),
-          ),
-          const SizedBox(width: 16),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -107,17 +118,13 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
       children: [
         Container(
           margin: const EdgeInsets.symmetric(
-            horizontal: 8,
-            vertical: 16,
+            horizontal: 12,
+            vertical: 18,
           ),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10),
-              topLeft: Radius.circular(5),
-              topRight: Radius.circular(5),
-            ),
+            color: AppColors.grayscaleOffWhite,
+            borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
                 offset: const Offset(0, 0),
@@ -130,50 +137,42 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(
-                  left: 16,
-                  right: 16,
-                  top: 16,
-                  bottom: 8,
-                ),
-                child: Text(
-                  'Identitas Diri',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                  ),
+              const Text(
+                'Identitas Diri',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               const SizedBox(
-                height: 6,
+                height: 32,
               ),
-              buildContentProfile(
-                context: context,
-                title: 'Nama Lengkap',
-                value: 'Muhammad Ali Topan',
-              ),
-              buildContentProfile(
-                context: context,
-                title: 'Email',
-                value: 'helloaltop@gmail.com',
-              ),
-              buildContentProfile(
-                context: context,
-                title: 'Jenis Kelamin',
-                value: 'Laki - laki',
-              ),
-              buildContentProfile(
-                context: context,
-                title: 'Kelas',
-                value: 'XII-IPA',
-              ),
-              buildContentProfile(
-                context: context,
-                title: 'Sekolah',
-                value: 'SMAN 1 Kediri',
-              ),
-              const SizedBox(height: 16),
+              Obx(() => buildContentProfile(
+                    context: context,
+                    title: 'Nama Lengkap',
+                    value: controller.currentUser.value.userName ?? '',
+                  )),
+              Obx(() => buildContentProfile(
+                    context: context,
+                    title: 'Email',
+                    value: controller.currentUser.value.userEmail ?? '',
+                  )),
+              Obx(() => buildContentProfile(
+                    context: context,
+                    title: 'Jenis Kelamin',
+                    value: controller.currentUser.value.userGender ?? '',
+                  )),
+              Obx(() => buildContentProfile(
+                    context: context,
+                    title: 'Kelas',
+                    value: controller.currentUser.value.kelas ?? '',
+                  )),
+              Obx(() => buildContentProfile(
+                    context: context,
+                    title: 'Sekolah',
+                    value: controller.currentUser.value.userAsalSekolah ?? '',
+                  )),
+              const SizedBox(height: 4),
             ],
           ),
         ),
@@ -190,31 +189,27 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
     required String title,
     required String value,
   }) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 16,
-        top: 16,
-        right: 16,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.black.withOpacity(0.4),
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            color: Colors.black.withOpacity(0.4),
           ),
-          Text(
-            value,
-            style: const TextStyle(
-              fontSize: 13,
-              color: Colors.black,
-            ),
+        ),
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 16)
+      ],
     );
   }
 
@@ -225,31 +220,33 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        padding: const EdgeInsets.all(14),
+        margin: const EdgeInsets.only(left: 12, right: 12, bottom: 18),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.grayscaleOffWhite,
+          borderRadius: BorderRadius.circular(10),
           boxShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.25), blurRadius: 6, spreadRadius: 0, offset: const Offset(0, 0))
+            BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                blurRadius: 6,
+                spreadRadius: 0,
+                offset: const Offset(0, 0))
           ],
         ),
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-        child: const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Icon(
-                Icons.exit_to_app,
-                color: Color(0xffEB5757),
-              ),
-              SizedBox(width: 6),
-              Text(
-                'Keluar',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xffEB5757),
+        child: const Row(
+          children: [
+            Icon(Icons.exit_to_app, color: AppColors.error //Color(0xffEB5757),
                 ),
-              ),
-            ],
-          ),
+            SizedBox(width: 6),
+            Text(
+              'Keluar',
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.error //Color(0xffEB5757),
+                  ),
+            ),
+          ],
         ),
       ),
     );
@@ -262,28 +259,31 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
           children: [
             Column(
               children: [
-                const SizedBox(height: 16),
-                const Text('Logout?'),
+                const SizedBox(height: 32),
+                const Text('Kamu Yakin ingin Keluar?'),
                 const SizedBox(height: 16),
                 Row(
                   children: [
                     const SizedBox(width: 32),
                     Expanded(
-                      child: OutlinedButton(
+                      child: CommonButton(
                         onPressed: () {
                           Get.back();
                         },
-                        child: const Text('Tidak'),
+                        text: 'Tidak',
                       ),
                     ),
                     const SizedBox(width: 32),
                     Expanded(
-                      child: ElevatedButton(
+                      child: CommonButton(
                           onPressed: () {
                             Get.back();
                             controller.signOut();
                           },
-                          child: const Text('Ya')),
+                          text: 'Ya',
+                          textColor: AppColors.primary,
+                          backgroundColor: Colors.transparent,
+                          borderColor: AppColors.primary),
                     ),
                     const SizedBox(width: 32),
                   ],
@@ -331,7 +331,7 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
     //       ),
     //     ],
     //   ),
-    //   backgroundColor: Colors.white,
+    //   backgroundColor: AppColors.grayscaleOffWhite,
     // );
   }
 }

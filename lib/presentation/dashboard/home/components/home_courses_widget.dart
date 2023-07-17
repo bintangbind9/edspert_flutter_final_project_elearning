@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/asset_images.dart';
 import '../../../../core/constants/general_values.dart';
 import '../../../../data/model/course.dart';
@@ -109,7 +110,7 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
                                 placeholder: (context, url) =>
                                     const CircularProgressIndicator(),
                                 errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
+                                    const Icon(Icons.book, color: AppColors.secondary),
                                 fit: BoxFit.contain),
                           ),
                           onTap: () {
