@@ -16,4 +16,8 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<bool> registerUser(
           {required UserRegistrationRequest userBody}) async =>
       await authRemoteDataSource.registerUser(userBody: userBody);
+
+  @override
+  Future<User?> updateUserByEmail({required UserRegistrationRequest userBody}) async =>
+      await authRemoteDataSource.updateUserByEmail(userBody: userBody);
 }

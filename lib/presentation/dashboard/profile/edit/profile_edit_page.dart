@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/constants/app_colors.dart';
 import 'components/profile_edit_form_page.dart';
 import 'profile_edit_controller.dart';
-
-class ProfileEditArgs {
-  final String name;
-  final String email;
-  final String jenisKelamin;
-  ProfileEditArgs({
-    required this.name,
-    required this.email,
-    required this.jenisKelamin,
-  });
-}
 
 class ProfileEditPage<C extends ProfileEditController> extends GetView<C> {
   static const routeName = '/profile/edit';
@@ -22,17 +12,32 @@ class ProfileEditPage<C extends ProfileEditController> extends GetView<C> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context),
-      body: buildBody(context),
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.focusedChild?.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: buildAppBar(context),
+        body: buildBody(context),
+      ),
     );
   }
 
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
-      title: const Text('Edit Akun'),
+      leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(Icons.chevron_left)),
+      title: const Text('Edit Akun',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
       centerTitle: true,
-      backgroundColor: const Color(0xff3A7FD5),
+      backgroundColor: AppColors.primary,
+      foregroundColor: AppColors.grayscaleOffWhite,
     );
   }
 

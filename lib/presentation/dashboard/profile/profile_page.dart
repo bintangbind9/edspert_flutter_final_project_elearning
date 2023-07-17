@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/app_colors.dart';
+import '../../../data/model/user.dart';
 import 'edit/profile_edit_page.dart';
 import 'profile_controller.dart';
 
@@ -31,13 +32,7 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
       centerTitle: true,
       actions: [
         TextButton(
-          onPressed: () => redirectToEditPage(
-            ProfileEditArgs(
-              name: controller.currentUser.value.userName ?? '',
-              email: controller.currentUser.value.userEmail ?? '',
-              jenisKelamin: controller.currentUser.value.userGender ?? '',
-            ),
-          ),
+          onPressed: () => redirectToEditPage(controller.currentUser.value),
           child: const Text(
             'Edit',
             style: TextStyle(
@@ -56,7 +51,7 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
     );
   }
 
-  void redirectToEditPage(ProfileEditArgs args) => Get.toNamed(
+  void redirectToEditPage(User args) => Get.toNamed(
         ProfileEditPage.routeName,
         arguments: args,
       );
@@ -104,7 +99,7 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
                     height: 50,
                     fit: BoxFit.cover,
                     errorWidget: (context, url, error) =>
-                        const Icon(Icons.person),
+                        const Icon(Icons.person, color: AppColors.grayscaleOffWhite),
                   )),
             ),
           ],

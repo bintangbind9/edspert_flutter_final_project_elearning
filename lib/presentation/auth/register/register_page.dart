@@ -1,3 +1,4 @@
+import 'package:edspert_flutter_final_project_elearning/core/constants/general_values.dart';
 import 'package:edspert_flutter_final_project_elearning/data/model/user_registration_request.dart';
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -113,14 +114,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: InkWell(
                         onTap: () {
                           setState(() {
-                            jenisKelamin = 'Laki-Laki';
+                            jenisKelamin = GeneralValues.genderM;
                           });
                         },
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 35),
                           decoration: BoxDecoration(
-                            color: jenisKelamin == 'Laki-Laki'
+                            color: jenisKelamin == GeneralValues.genderM
                                 ? Colors.green
                                 : Colors.white,
                             borderRadius: BorderRadius.circular(8),
@@ -130,10 +131,10 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           child: Text(
-                            'Laki-Laki',
+                            GeneralValues.genderM,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: jenisKelamin == 'Laki-Laki'
+                              color: jenisKelamin == GeneralValues.genderM
                                   ? Colors.white
                                   : Colors.black,
                               fontWeight: FontWeight.w600,
@@ -148,14 +149,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: InkWell(
                         onTap: () {
                           setState(() {
-                            jenisKelamin = 'Perempuan';
+                            jenisKelamin = GeneralValues.genderF;
                           });
                         },
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 35),
                           decoration: BoxDecoration(
-                            color: jenisKelamin == 'Perempuan'
+                            color: jenisKelamin == GeneralValues.genderF
                                 ? Colors.green
                                 : Colors.white,
                             borderRadius: BorderRadius.circular(8),
@@ -165,10 +166,10 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           child: Text(
-                            'Perempuan',
+                            GeneralValues.genderF,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: jenisKelamin == 'Perempuan'
+                              color: jenisKelamin == GeneralValues.genderF
                                   ? Colors.white
                                   : Colors.black,
                               fontWeight: FontWeight.w600,
@@ -247,9 +248,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                     fullName: _fullNameTextController.text,
                                     gender: jenisKelamin,
                                     schoolName: _schoolNameTextController.text,
-                                    schoolLevel: 'SMA',
+                                    schoolLevel: GeneralValues.defaultJenjang,
                                     schoolGrade: selectedKelas!,
-                                    photoUrl: 'url_foto');
+                                    photoUrl: GeneralValues.defaultPhotoURL);
                             final bool isSuccessRegister = await controller
                                 .registerUser(userBody: userBody);
                             if (isSuccessRegister) {

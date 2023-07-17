@@ -1,6 +1,7 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../data/model/arguments/exercise_result_page_args.dart';
+import '../data/model/user.dart';
 import '../presentation/auth/login/login_binding.dart';
 import '../presentation/auth/login/login_page.dart';
 import '../presentation/auth/register/register_binding.dart';
@@ -76,7 +77,7 @@ class Pages {
       name: ProfileEditPage.routeName,
       page: () => const ProfileEditPage(),
       binding: ProfileEditBinding(),
-      arguments: ProfileEditArgs,
+      arguments: User,
     )
   ];
 }

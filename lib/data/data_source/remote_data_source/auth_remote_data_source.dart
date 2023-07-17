@@ -48,4 +48,25 @@ class AuthRemoteDataSource {
       return false;
     }
   }
+
+  Future<User?> updateUserByEmail({required UserRegistrationRequest userBody}) async {
+    try {
+      final result = await dioClient.post(
+        Urls.userUpdate,
+        body: userBody.toMap(),
+      );
+
+      UserResponse res = UserResponse.fromJson(result);
+
+      if ((res.status ?? 0) == 0) {
+        return null;
+      }
+      return res.data;
+    } catch (e, stackTrace) {
+      if (kDebugMode) {
+        print('Err updateUserByEmail: $e, $stackTrace');
+      }
+      return null;
+    }
+  }
 }
