@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'E Learning',
+      title: 'LearningApp',
       theme: ThemeData(
           useMaterial3: true,
           fontFamily: 'Poppins',
