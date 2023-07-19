@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../domain/service/firebase_auth_service.dart';
+import '../../../routes/routes.dart';
 
 class RegisterController extends GetxController {
   final FirebaseAuthService firebaseAuthService;
@@ -25,5 +26,10 @@ class RegisterController extends GetxController {
 
   Future<bool> registerUser({required UserRegistrationRequest userBody}) async {
     return await registerUserUseCase.call(userBody: userBody);
+  }
+
+  Future<void> signOut() async {
+    await firebaseAuthService.signOut();
+    Get.offAllNamed(Routes.login);
   }
 }

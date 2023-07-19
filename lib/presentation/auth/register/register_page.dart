@@ -42,9 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
           appBar: AppBar(
             backgroundColor: AppColors.grayscaleOffWhite,
             leading: IconButton(
-              onPressed: () {
-                Get.offAllNamed(Routes.login);
-              },
+              onPressed: () async => await controller.signOut(),
               color: Colors.black,
               icon: const Icon(Icons.arrow_back),
             ),
@@ -197,6 +195,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         width: 1,
                       )),
                   child: DropdownButton<String?>(
+                    isExpanded: true,
                     value: selectedKelas,
                     icon: const Icon(Icons.keyboard_arrow_down),
                     hint: const Text('Pilih Kelas'),

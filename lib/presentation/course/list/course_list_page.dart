@@ -15,6 +15,7 @@ class CourseListPage extends GetView<CourseListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.grayscaleBackground,
       appBar: AppBar(
         title: const Text('Pilih Pelajaran',
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18)),
@@ -83,7 +84,7 @@ class CourseListPage extends GetView<CourseListController> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
+                                  const Icon(Icons.book, color: AppColors.secondary),
                               fit: BoxFit.contain),
                         ),
                         onTap: () {

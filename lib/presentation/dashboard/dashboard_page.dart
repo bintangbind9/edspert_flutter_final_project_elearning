@@ -21,7 +21,6 @@ class DashboardPage extends GetView<DashboardController> {
       int selectedIndex = controller.selectedNavIndexObs.value;
       return SafeArea(
         child: Scaffold(
-          // body: _bodyList()[selectedIndex],
           body: IndexedStack(
             index: selectedIndex,
             children: const [
@@ -33,7 +32,7 @@ class DashboardPage extends GetView<DashboardController> {
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
                 color: AppColors.grayscaleOffWhite,
-                borderRadius: const BorderRadius.only(
+                borderRadius: selectedIndex == GeneralValues.indexOfDiscussionPage ? null : const BorderRadius.only(
                     topLeft: Radius.circular(16),
                     topRight: Radius.circular(16)),
                 boxShadow: [
@@ -52,28 +51,28 @@ class DashboardPage extends GetView<DashboardController> {
                 CustomBottomNavigationBarItem(
                     onPressed: () => controller.navigateTo(GeneralValues.indexOfHomePage),
                     text: 'Home',
-                    isEnabled: controller.selectedNavIndexObs.value == GeneralValues.indexOfHomePage
+                    isEnabled: selectedIndex == GeneralValues.indexOfHomePage
                         ? true
                         : false,
-                    picture: controller.selectedNavIndexObs.value == GeneralValues.indexOfHomePage
+                    picture: selectedIndex == GeneralValues.indexOfHomePage
                         ? SvgPicture.asset(AssetImages.iconHomeEnabledSvg)
                         : SvgPicture.asset(AssetImages.iconHomeDisabledSvg)),
                 CustomBottomNavigationBarItem(
                     onPressed: () => controller.navigateTo(GeneralValues.indexOfDiscussionPage),
                     text: 'Diskusi Soal',
-                    isEnabled: controller.selectedNavIndexObs.value == GeneralValues.indexOfDiscussionPage
+                    isEnabled: selectedIndex == GeneralValues.indexOfDiscussionPage
                         ? true
                         : false,
-                    picture: controller.selectedNavIndexObs.value == GeneralValues.indexOfDiscussionPage
+                    picture: selectedIndex == GeneralValues.indexOfDiscussionPage
                         ? SvgPicture.asset(AssetImages.iconCardsEnabledSvg)
                         : const SizedBox(height: 24)),
                 CustomBottomNavigationBarItem(
                     onPressed: () => controller.navigateTo(GeneralValues.indexOfProfilePage),
                     text: 'Profile',
-                    isEnabled: controller.selectedNavIndexObs.value == GeneralValues.indexOfProfilePage
+                    isEnabled: selectedIndex == GeneralValues.indexOfProfilePage
                         ? true
                         : false,
-                    picture: controller.selectedNavIndexObs.value == GeneralValues.indexOfProfilePage
+                    picture: selectedIndex == GeneralValues.indexOfProfilePage
                         ? SvgPicture.asset(AssetImages.iconPersonEnabledSvg)
                         : SvgPicture.asset(AssetImages.iconPersonDisabledSvg)),
               ],
@@ -101,16 +100,10 @@ class DashboardPage extends GetView<DashboardController> {
             ],
           ),
           */
-          floatingActionButton: controller.selectedNavIndexObs.value == 1 ? null : CustomFloatingActionButton(onPressed: () => controller.navigateTo(1), child: Image.asset(AssetImages.iconQuizPng)),
+          floatingActionButton: selectedIndex == 1 ? null : CustomFloatingActionButton(onPressed: () => controller.navigateTo(1), child: Image.asset(AssetImages.iconQuizPng)),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         ),
       );
     });
   }
-
-  List<Widget> _bodyList() => [
-        const HomePage(),
-        const DiscussionPage(),
-        const ProfilePage(),
-      ];
 }
