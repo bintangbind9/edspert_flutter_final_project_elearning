@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/constants/app_colors.dart';
 import 'components/chat_item_widget.dart';
 import 'discussion_controller.dart';
 import 'components/input_chat_widget.dart';
@@ -15,27 +16,37 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      appBar: buildAppBar(context),
-      body: Column(
-        children: [
-          Expanded(
-            child: buildBody(context),
-          ),
-          _buildBottomChatOperation(context),
-        ],
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.focusedChild?.unfocus();
+        }
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        appBar: buildAppBar(context),
+        body: Column(
+          children: [
+            Expanded(
+              child: buildBody(context),
+            ),
+            _buildBottomChatOperation(context),
+          ],
+        ),
       ),
     );
   }
 
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
-      title: const Text('Diskusi Soal'),
+      title: const Text('Diskusi Soal', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
+      foregroundColor: AppColors.grayscaleOffWhite,
+      backgroundColor: AppColors.primary,
       centerTitle: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(25),
+          bottomLeft: Radius.circular(10),
           bottomRight: Radius.circular(10),
         ),
       ),

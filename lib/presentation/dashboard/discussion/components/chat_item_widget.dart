@@ -33,15 +33,15 @@ class ChatItemWidget extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   bottomRight: (chat.isSender)
                       ? const Radius.circular(0)
-                      : const Radius.circular(8),
-                  bottomLeft: const Radius.circular(8),
+                      : const Radius.circular(12),
+                  bottomLeft: const Radius.circular(12),
                   topLeft: (!chat.isSender)
                       ? const Radius.circular(0)
-                      : const Radius.circular(8),
-                  topRight: const Radius.circular(8)),
+                      : const Radius.circular(12),
+                  topRight: const Radius.circular(12)),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
               child: Text(
                 chat.content,
                 style: TextStyle(
