@@ -23,7 +23,7 @@ class ChatItemWidget extends StatelessWidget {
             : CrossAxisAlignment.end,
         children: [
           Text(
-            chat.name,
+            chat.isSender ? 'Saya' : chat.name,
             style: TextStyle(color: mappingNameColor(context)),
           ),
           Card(

@@ -1,7 +1,9 @@
+import 'package:edspert_flutter_final_project_elearning/presentation/dashboard/discussion/discussion_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class InputChatWidget extends StatelessWidget {
-  const InputChatWidget({
+  InputChatWidget({
     super.key,
     this.onTapAdd,
     this.onTapCamera,
@@ -11,6 +13,8 @@ class InputChatWidget extends StatelessWidget {
   final Function()? onTapAdd;
   final GestureTapCallback? onTapCamera;
   final GestureTapCallback? onTapSend;
+
+  final DiscussionController discussionController = Get.find<DiscussionController>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +34,7 @@ class InputChatWidget extends StatelessWidget {
             child: SizedBox(
               height: 32,
               child: TextFormField(
+                controller: discussionController.tecChatContent,
                 decoration: InputDecoration(
                   filled: true,
                   suffixIcon: GestureDetector(

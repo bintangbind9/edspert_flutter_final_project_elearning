@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/app_colors.dart';
+import '../../../data/model/chat_item.dart';
+import '../dashboard_controller.dart';
 import 'components/chat_item_widget.dart';
 import 'discussion_controller.dart';
 import 'components/input_chat_widget.dart';
@@ -113,8 +115,15 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
   }
 
   void onSend(BuildContext context) {
-    final fileName = controller.selectedFile?.name;
-    debugPrint(fileName);
+    // final fileName = controller.selectedFile?.name;
+    // debugPrint(fileName);
+    controller.sendChat(ChatItem(
+        content: controller.tecChatContent.text,
+        id: 1,
+        name: Get.find<DashboardController>().currentUser!.userName!,
+        dateTime: DateTime.now(),
+        isSender: true));
+    controller.tecChatContent.text = '';
   }
 
   void onTapAdd(BuildContext context) {

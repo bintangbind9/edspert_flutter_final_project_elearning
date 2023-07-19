@@ -1,4 +1,5 @@
 import 'package:edspert_flutter_final_project_elearning/domain/use_case/chat/get_messages_use_case.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -20,6 +21,8 @@ class DiscussionController extends GetxController {
   List<ChatItem> get messages => _messages.value;
   bool get isLoadingMessages => _isLoadingMessages.value;
   XFile? get selectedFile => _selectedFile.value;
+
+  final TextEditingController tecChatContent = TextEditingController();
 
   @override
   void onReady() async {
@@ -46,4 +49,8 @@ class DiscussionController extends GetxController {
   }
 
   int get messageLength => _messages.value.length;
+
+  void sendChat(ChatItem chatItem) {
+    _messages.value.add(chatItem);
+  }
 }

@@ -11,71 +11,28 @@ class ChatLocalDataSource {
 
     final List<ChatItem> messages = [
       ChatItem(
-        content: 'Halo semua saya Andika dari SMAN 1 Yogyakarta.',
-        id: 1,
+        content: 'Halo semua saya Naufal dari SMAN 1 Yogyakarta.',
+        id: 3,
         name: 'Naufal',
-        dateTime: first,
+        dateTime: third,
       ),
       ChatItem(
-        content: 'Halo semua saya Andika dari SMAN 2 Yogyakarta.',
-        id: 2,
+        content: 'Halo semua saya Bayu dari SMAN 3 Yogyakarta.',
+        id: 5,
         name: 'Bayu',
-        dateTime: second,
+        dateTime: third,
       ),
       ChatItem(
-        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
-        id: 3,
+        content: 'Halo semua saya Karina dari SMAN 1 Surabaya.',
+        id: 2,
         name: 'Karina',
         dateTime: third,
       ),
       ChatItem(
         content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
-        id: 3,
-        name: 'Karina',
-        dateTime: third,
-      ),
-      ChatItem(
-        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
-        id: 3,
-        name: 'Karina',
-        dateTime: third,
-      ),
-      ChatItem(
-        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
-        id: 3,
-        name: 'Karina',
-        dateTime: third,
-      ),
-      ChatItem(
-        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
-        id: 3,
-        name: 'Karina',
-        dateTime: third,
-      ),
-      ChatItem(
-        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
-        id: 3,
-        name: 'Karina',
-        dateTime: third,
-      ),
-      ChatItem(
-        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
-        id: 3,
-        name: 'Karina',
-        dateTime: third,
-      ),
-      ChatItem(
-        content: 'Halo semua saya Andika dari SMAN 4 Yogyakarta.',
         id: 4,
         name: 'Andy',
         dateTime: four,
-      ),
-      ChatItem(
-        content: 'Baik Kak, terimakasih',
-        id: 5,
-        name: 'Chandra',
-        dateTime: five,
-        isSender: true,
       ),
       ChatItem(
         content:
@@ -84,14 +41,7 @@ class ChatLocalDataSource {
         name: 'Arin',
         dateTime: six,
         isTutor: true,
-      ),
-      ChatItem(
-        content: 'OKE',
-        id: 7,
-        name: 'Chandra',
-        dateTime: five,
-        isSender: true,
-      ),
+      )
     ];
 
     return messages;
