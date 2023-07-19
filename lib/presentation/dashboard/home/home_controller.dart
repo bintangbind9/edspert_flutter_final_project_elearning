@@ -7,19 +7,16 @@ import '../../../data/model/banner.dart';
 import '../../../data/model/course.dart';
 import '../../../data/model/user.dart';
 import '../../../domain/service/firebase_auth_service.dart';
-import '../../../domain/use_case/auth/get_user_by_email_use_case.dart';
 
 class HomeController extends GetxController {
   final FirebaseAuthService firebaseAuthService;
   final GetCoursesUseCase getCoursesUseCase;
   final GetBannersUseCase getBannersUseCase;
-  final GetUserByEmailUseCase getUserByEmailUseCase;
 
   HomeController(
       {required this.firebaseAuthService,
       required this.getCoursesUseCase,
-      required this.getBannersUseCase,
-      required this.getUserByEmailUseCase});
+      required this.getBannersUseCase});
 
   List<Course> courseList = [];
   List<Banner> bannerList = [];
@@ -39,10 +36,6 @@ class HomeController extends GetxController {
     update();
     String? email = firebaseAuthService.getCurrentSignedInUserEmail();
     if (email != null) {
-      User? user = await getUserByEmailUseCase.call(email: email);
-      if (user != null) {
-        currentUser(user);
-      }
 
       List<Course> coursesResult = await getCoursesUseCase.call(
         majorName: GeneralValues.majorName,

@@ -1,4 +1,5 @@
 import 'package:edspert_flutter_final_project_elearning/core/constants/general_values.dart';
+import 'package:edspert_flutter_final_project_elearning/presentation/dashboard/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +27,8 @@ class ProfileEditController extends GetxController {
 
   late User args;
 
-  Rx<bool> isUpdateUserLoading = false.obs;
+  bool isUpdateUserLoading = false;
+  final DashboardController dashboardController = Get.find<DashboardController>();
 
   @override
   void onInit() {
@@ -50,15 +52,16 @@ class ProfileEditController extends GetxController {
   }
 
   Future<void> updateData(UserRegistrationRequest userBody) async {
-    isUpdateUserLoading(true);
+    isUpdateUserLoading = true;
     update();
 
     User? updatedUser = await updateUserByEmailUseCase.call(userBody: userBody);
 
-    isUpdateUserLoading(false);
+    isUpdateUserLoading = false;
     update();
 
     if (updatedUser != null) {
+      dashboardController.updateUser(updatedUser);
       Get.snackbar('Success', 'Data Kamu berhasil diupdate.',
           colorText: AppColors.grayscaleOffWhite,
           backgroundColor: AppColors.success);

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../data/model/user.dart';
+import '../dashboard_controller.dart';
 import 'edit/profile_edit_page.dart';
 import 'profile_controller.dart';
 
@@ -31,14 +32,18 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
       backgroundColor: AppColors.primary,
       centerTitle: true,
       actions: [
-        TextButton(
-          onPressed: () => redirectToEditPage(controller.currentUser.value),
-          child: const Text(
-            'Edit',
-            style: TextStyle(
-              color: AppColors.grayscaleOffWhite,
-            ),
-          ),
+        GetBuilder<DashboardController>(
+          builder: (controller) {
+            return TextButton(
+              onPressed: () => redirectToEditPage(controller.currentUser!),
+              child: const Text(
+                'Edit',
+                style: TextStyle(
+                  color: AppColors.grayscaleOffWhite,
+                ),
+              ),
+            );
+          }
         ),
       ],
       bottom: buildBottomAppBar(context),
@@ -59,123 +64,131 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
   PreferredSizeWidget buildBottomAppBar(BuildContext context) {
     return PreferredSize(
       preferredSize: Size(Get.width, 120),
-      child: Container(
-        padding: const EdgeInsets.all(24),
-        height: 120,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+      child: GetBuilder<DashboardController>(
+        builder: (controller) {
+          return Container(
+            padding: const EdgeInsets.all(24),
+            height: 120,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Obx(() => Text(
-                      controller.currentUser.value.userName ?? '',
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color: AppColors.grayscaleOffWhite,
-                      ),
-                    )),
-                const SizedBox(
-                  height: 8,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                          controller.currentUser?.userName ?? '',
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            color: AppColors.grayscaleOffWhite,
+                          ),
+                        ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                          controller.currentUser?.userAsalSekolah ?? '',
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: AppColors.grayscaleOffWhite,
+                          ),
+                        ),
+                  ],
                 ),
-                Obx(() => Text(
-                      controller.currentUser.value.userAsalSekolah ?? '',
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: AppColors.grayscaleOffWhite,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: CachedNetworkImage(
+                        imageUrl: controller.currentUser?.userFoto ?? '',
+                        width: 50,
+                        height: 50,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.person, color: AppColors.grayscaleOffWhite),
                       ),
-                    )),
+                ),
               ],
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: Obx(() => CachedNetworkImage(
-                    imageUrl: controller.currentUser.value.userFoto ?? '',
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover,
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.person, color: AppColors.grayscaleOffWhite),
-                  )),
-            ),
-          ],
-        ),
+          );
+        }
       ),
     );
   }
 
   Widget buildBody(BuildContext context) {
-    return ListView(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 18,
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
-          decoration: BoxDecoration(
-            color: AppColors.grayscaleOffWhite,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                offset: const Offset(0, 0),
-                blurRadius: 7,
-                spreadRadius: 0,
-                color: Colors.black.withOpacity(0.25),
-              )
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Identitas Diri',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                ),
+    return GetBuilder<DashboardController>(
+      builder: (controller) {
+        return ListView(
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 18,
               ),
-              const SizedBox(
-                height: 32,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+              decoration: BoxDecoration(
+                color: AppColors.grayscaleOffWhite,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(0, 0),
+                    blurRadius: 7,
+                    spreadRadius: 0,
+                    color: Colors.black.withOpacity(0.25),
+                  )
+                ],
               ),
-              Obx(() => buildContentProfile(
-                    context: context,
-                    title: 'Nama Lengkap',
-                    value: controller.currentUser.value.userName ?? '',
-                  )),
-              Obx(() => buildContentProfile(
-                    context: context,
-                    title: 'Email',
-                    value: controller.currentUser.value.userEmail ?? '',
-                  )),
-              Obx(() => buildContentProfile(
-                    context: context,
-                    title: 'Jenis Kelamin',
-                    value: controller.currentUser.value.userGender ?? '',
-                  )),
-              Obx(() => buildContentProfile(
-                    context: context,
-                    title: 'Kelas',
-                    value: controller.currentUser.value.kelas ?? '',
-                  )),
-              Obx(() => buildContentProfile(
-                    context: context,
-                    title: 'Sekolah',
-                    value: controller.currentUser.value.userAsalSekolah ?? '',
-                  )),
-              const SizedBox(height: 4),
-            ],
-          ),
-        ),
-        buildLogoutSection(
-          context: context,
-          onTap: () => onLogoutPressed(),
-        ),
-      ],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Identitas Diri',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  buildContentProfile(
+                        context: context,
+                        title: 'Nama Lengkap',
+                        value: controller.currentUser?.userName ?? '',
+                      ),
+                  buildContentProfile(
+                        context: context,
+                        title: 'Email',
+                        value: controller.currentUser?.userEmail ?? '',
+                      ),
+                  buildContentProfile(
+                        context: context,
+                        title: 'Jenis Kelamin',
+                        value: controller.currentUser?.userGender ?? '',
+                      ),
+                  buildContentProfile(
+                        context: context,
+                        title: 'Kelas',
+                        value: controller.currentUser?.kelas ?? '',
+                      ),
+                  buildContentProfile(
+                        context: context,
+                        title: 'Sekolah',
+                        value: controller.currentUser?.userAsalSekolah ?? '',
+                      ),
+                  const SizedBox(height: 4),
+                ],
+              ),
+            ),
+            buildLogoutSection(
+              context: context,
+              onTap: () => onLogoutPressed(),
+            ),
+          ],
+        );
+      }
     );
   }
 
