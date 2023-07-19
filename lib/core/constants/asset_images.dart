@@ -18,4 +18,20 @@ class AssetImages {
   static const String iconHomeEnabledSvg = 'assets/icon/icon_home_enabled.svg';
   static const String iconHomeDisabledPng = 'assets/icon/icon_home_disabled.png';
   static const String iconHomeDisabledSvg = 'assets/icon/icon_home_disabled.svg';
+  static const String iconBookEnabledPng = 'assets/icon/icon_book_enabled.png';
+  static const String iconBookEnabledSvg = 'assets/icon/icon_book_enabled.svg';
+  static const String iconBookDisabledPng = 'assets/icon/icon_book_disabled.png';
+  static const String iconBookDisabledSvg = 'assets/icon/icon_book_disabled.svg';
+  static const String iconPersonEnabledPng = 'assets/icon/icon_person_enabled.png';
+  static const String iconPersonEnabledSvg = 'assets/icon/icon_person_enabled.svg';
+  static const String iconPersonDisabledPng = 'assets/icon/icon_person_disabled.png';
+  static const String iconPersonDisabledSvg = 'assets/icon/icon_person_disabled.svg';
+  static const String iconCardsEnabledPng = 'assets/icon/icon_cards_enabled.png';
+  static const String iconCardsEnabledSvg = 'assets/icon/icon_cards_enabled.svg';
+  static const String iconCardsDisabledPng = 'assets/icon/icon_cards_disabled.png';
+  static const String iconCardsDisabledSvg = 'assets/icon/icon_cards_disabled.svg';
+  static const String iconQuizPng = 'assets/icon/icon_quiz.png';
+  static const String iconQuizSvg = 'assets/icon/icon_quiz.svg';
+  static const String iconQuiz2Png = 'assets/icon/icon_quiz_2.png';
+  static const String iconQuiz2Svg = 'assets/icon/icon_quiz_2.svg';
 }

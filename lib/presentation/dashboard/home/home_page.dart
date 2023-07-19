@@ -13,7 +13,7 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    bool isMobile = MediaQuery.of(context).size.shortestSide < 600;
+    // bool isMobile = MediaQuery.of(context).size.shortestSide < 600;
     return Scaffold(
       backgroundColor: AppColors.grayscaleBackground,
       body: ListView(
@@ -24,7 +24,8 @@ class HomePage extends GetView<HomeController> {
           SizedBox(height: 25),
           HomeCoursesWidget(),
           SizedBox(height: 25),
-          HomeBannersWidget()
+          HomeBannersWidget(),
+          SizedBox(height: 25)
         ],
       ),
     );

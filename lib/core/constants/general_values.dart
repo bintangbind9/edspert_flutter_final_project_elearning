@@ -6,4 +6,7 @@ class GeneralValues {
   static const String genderF = 'Perempuan';
   static const String defaultJenjang = 'SMA';
   static const String defaultPhotoURL = 'url_foto';
+  static const int indexOfHomePage = 0;
+  static const int indexOfDiscussionPage = 1;
+  static const int indexOfProfilePage = 2;
 }

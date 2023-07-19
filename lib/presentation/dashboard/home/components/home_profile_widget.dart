@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:edspert_flutter_final_project_elearning/core/constants/general_values.dart';
 import 'package:edspert_flutter_final_project_elearning/presentation/dashboard/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,15 +32,18 @@ class HomeProfileWidget extends StatelessWidget {
                           TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
                 ],
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(35),
-                child: CachedNetworkImage(
-                    imageUrl: controller.currentUser?.userFoto ?? '',
-                    width: 35,
-                    height: 35,
-                    fit: BoxFit.cover,
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.person)),
+              GestureDetector(
+                onTap: () => controller.navigateTo(GeneralValues.indexOfProfilePage),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(35),
+                  child: CachedNetworkImage(
+                      imageUrl: controller.currentUser?.userFoto ?? '',
+                      width: 35,
+                      height: 35,
+                      fit: BoxFit.cover,
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.person)),
+                ),
               ),
             ],
           ),
