@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:edspert_flutter_final_project_elearning/data/model/firestore/user.dart';
 
 import '../../model/message.dart';
 
@@ -25,9 +26,25 @@ class FirestoreRemoteDataSource {
     return snapshot;
   }
 
+  // get user by uid
+  Future<DocumentSnapshot> getUserById() async {
+    return await userCollection.doc(uid).get();
+  }
+
   // get user stream
   Stream<DocumentSnapshot> getUserStream() {
     return userCollection.doc(uid).snapshots();
+  }
+
+  // get user group stream
+  Stream<List<dynamic>> getUserGroupStream() {
+    final userModelRef = userCollection.withConverter<UserModel>(
+      fromFirestore: (snapshot, _) => UserModel.fromJson(snapshot.data()!),
+      toFirestore: (userModel, _) => userModel.toJson(),
+    );
+    return userModelRef.doc(uid).snapshots().map((DocumentSnapshot<UserModel> doc) {
+      return doc.data()!.groups;
+    });
   }
 
   // creating a group

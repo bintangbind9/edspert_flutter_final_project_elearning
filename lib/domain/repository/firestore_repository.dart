@@ -5,7 +5,9 @@ import '../../data/model/message.dart';
 abstract class FirestoreRepository {
   Future<void> createOrUpdateUser({required String email});
   Future<QuerySnapshot> getUser({required String email});
+  Future<DocumentSnapshot> getUserById();
   Stream<DocumentSnapshot> getUserStream();
+  Stream<List<dynamic>> getUserGroupStream();
   Future<void> createGroup({required String userId, required String groupName});
   Stream<QuerySnapshot<Map<String, dynamic>>> getChatsStream({required String groupId});
   Future<String> getGroupAdmin({required String groupId});

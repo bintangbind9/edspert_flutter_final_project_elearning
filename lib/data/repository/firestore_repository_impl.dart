@@ -62,4 +62,14 @@ class FirestoreRepositoryImpl implements FirestoreRepository{
   Future<void> toggleGroupJoin({required String groupId}) async {
     return await firestoreRemoteDataSource.toggleGroupJoin(groupId: groupId);
   }
+  
+  @override
+  Future<DocumentSnapshot<Object?>> getUserById() async {
+    return await firestoreRemoteDataSource.getUserById();
+  }
+  
+  @override
+  Stream<List<dynamic>> getUserGroupStream() {
+    return firestoreRemoteDataSource.getUserGroupStream();
+  }
 }

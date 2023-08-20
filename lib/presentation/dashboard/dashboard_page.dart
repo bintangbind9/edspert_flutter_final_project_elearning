@@ -8,7 +8,7 @@ import '../../core/constants/app_colors.dart';
 import '../widgets/custom_bottom_navigation_bar_item.dart';
 import '../widgets/custom_floating_action_button.dart';
 import 'dashboard_controller.dart';
-import 'discussion/discussion_page.dart';
+import 'discussion/group_list_page.dart';
 import 'home/home_page.dart';
 import 'profile/profile_page.dart';
 
@@ -25,7 +25,7 @@ class DashboardPage extends GetView<DashboardController> {
             index: selectedIndex,
             children: const [
               HomePage(),
-              DiscussionPage(),
+              GroupListPage(),
               ProfilePage(),
             ],
           ),

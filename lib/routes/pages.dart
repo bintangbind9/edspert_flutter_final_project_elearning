@@ -10,7 +10,7 @@ import '../presentation/course/list/course_list_binding.dart';
 import '../presentation/course/list/course_list_page.dart';
 import '../presentation/dashboard/dashboard_binding.dart';
 import '../presentation/dashboard/dashboard_page.dart';
-import '../presentation/dashboard/discussion/discussion_binding.dart';
+import '../presentation/dashboard/discussion/group_list_binding.dart';
 import '../presentation/dashboard/profile/edit/profile_edit_binding.dart';
 import '../presentation/dashboard/profile/edit/profile_edit_page.dart';
 import '../presentation/dashboard/profile/profile_binding.dart';
@@ -47,7 +47,7 @@ class Pages {
       bindings: [
         DashboardBinding(),
         ProfileBinding(),
-        DiscussionBinding(),
+        GroupListBinding(),
       ],
     ),
     GetPage(
