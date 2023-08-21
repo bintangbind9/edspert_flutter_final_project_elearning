@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:edspert_flutter_final_project_elearning/data/data_source/remote_data_source/firestore_remote_data_source.dart';
+import 'package:edspert_flutter_final_project_elearning/data/model/firestore/group.dart';
 import 'package:edspert_flutter_final_project_elearning/data/model/message.dart';
 import 'package:edspert_flutter_final_project_elearning/domain/repository/firestore_repository.dart';
 
@@ -71,5 +72,10 @@ class FirestoreRepositoryImpl implements FirestoreRepository{
   @override
   Stream<List<dynamic>> getUserGroupStream() {
     return firestoreRemoteDataSource.getUserGroupStream();
+  }
+
+  @override
+  Stream<List<GroupModel>> getGroupsStream() {
+    return firestoreRemoteDataSource.getGroupsStream();
   }
 }

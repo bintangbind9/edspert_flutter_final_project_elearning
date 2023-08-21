@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../data/model/firestore/group.dart';
 import '../../data/model/message.dart';
 
 abstract class FirestoreRepository {
@@ -12,6 +13,7 @@ abstract class FirestoreRepository {
   Stream<QuerySnapshot<Map<String, dynamic>>> getChatsStream({required String groupId});
   Future<String> getGroupAdmin({required String groupId});
   Stream<DocumentSnapshot> getGroupStream({required String groupId});
+  Stream<List<GroupModel>> getGroupsStream();
   Future<QuerySnapshot> searchGroupByName({required String groupName});
   Future<bool> isUserJoined({required String groupId});
   Future<void> toggleGroupJoin({required String groupId});

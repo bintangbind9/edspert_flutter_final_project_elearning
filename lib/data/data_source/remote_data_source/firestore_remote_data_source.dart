@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:edspert_flutter_final_project_elearning/data/model/firestore/group.dart';
 import 'package:edspert_flutter_final_project_elearning/data/model/firestore/user.dart';
 
 import '../../model/message.dart';
@@ -85,6 +86,21 @@ class FirestoreRemoteDataSource {
   // getting group members
   Stream<DocumentSnapshot> getGroupStream({required String groupId}) {
     return groupCollection.doc(groupId).snapshots();
+  }
+
+  // getting all groups
+  Stream<List<GroupModel>> getGroupsStream() {
+    final groupModelRef = groupCollection.withConverter<GroupModel>(
+      fromFirestore: (snapshot, _) => GroupModel.fromJson(snapshot.data()!),
+      toFirestore: (groupModel, _) => groupModel.toJson(),
+    );
+    return groupModelRef.snapshots().map((QuerySnapshot<GroupModel> query) {
+      List<GroupModel> groups = <GroupModel>[];
+      for (DocumentSnapshot<GroupModel> group in query.docs) {
+        groups.add(group.data()!);
+      }
+      return groups;
+    });
   }
 
   // search group by name
