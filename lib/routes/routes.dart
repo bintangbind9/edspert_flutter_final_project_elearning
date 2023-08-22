@@ -9,4 +9,7 @@ class Routes {
 
   static const exerciseQuestionsForm = '$exerciseList/questions';
   static const exerciseResult = '$exerciseList/result';
+
+  static const groupList = '/groups';
+  static const chatPage = '$groupList/chat';
 }

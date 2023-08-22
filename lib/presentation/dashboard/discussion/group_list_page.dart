@@ -1,5 +1,6 @@
 import 'package:edspert_flutter_final_project_elearning/data/model/firestore/group.dart';
 import 'package:edspert_flutter_final_project_elearning/presentation/dashboard/discussion/group_list_controller.dart';
+import 'package:edspert_flutter_final_project_elearning/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +35,7 @@ class GroupListPage extends GetView<GroupListController> {
             GroupModel group = controller.groups[index];
             return GestureDetector(
               onTap: () {
-                //
+                Get.toNamed(Routes.chatPage, arguments: group);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 2),

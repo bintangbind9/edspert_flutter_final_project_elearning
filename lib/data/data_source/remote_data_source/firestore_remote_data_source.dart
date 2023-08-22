@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:edspert_flutter_final_project_elearning/data/model/firestore/group.dart';
 import 'package:edspert_flutter_final_project_elearning/data/model/firestore/user.dart';
 
-import '../../model/message.dart';
+import '../../model/firestore/message.dart';
 
 class FirestoreRemoteDataSource {
   final String? uid;
@@ -74,6 +74,21 @@ class FirestoreRemoteDataSource {
   // getting the chats
   Stream<QuerySnapshot<Map<String, dynamic>>> getChatsStream({required String groupId}) {
     return groupCollection.doc(groupId).collection('messages').orderBy('time', descending: true).snapshots();
+  }
+
+  // getting the messages
+  Stream<List<MessageModel>> getMessagesStream({required String groupId}) {
+    final messageModelRef = groupCollection.doc(groupId).collection('messages').withConverter<MessageModel>(
+      fromFirestore: (snapshot, _) => MessageModel.fromJson(snapshot.data()!),
+      toFirestore: (messageModel, _) => messageModel.toJson(),
+    );
+    return messageModelRef.orderBy('time', descending: true).snapshots().map((QuerySnapshot<MessageModel> query) {
+      List<MessageModel> messages = <MessageModel>[];
+      for (DocumentSnapshot<MessageModel> message in query.docs) {
+        messages.add(message.data()!);
+      }
+      return messages;
+    });
   }
 
   // getting group admin
@@ -149,16 +164,16 @@ class FirestoreRemoteDataSource {
   }
 
   // send message
-  Future<void> sendMessage({required String groupId, required Message message}) async {
+  Future<void> sendMessage({required String groupId, required MessageModel message}) async {
     Map<String, dynamic> chatMessageData = {
       "message": message.message,
-      "sender": message.sender,
-      "time": FieldValue.serverTimestamp()
+      "email": message.email,
+      "time": message.time
     };
     await groupCollection.doc(groupId).collection("messages").add(chatMessageData);
     await groupCollection.doc(groupId).update({
       "recentMessage": chatMessageData['message'],
-      "recentMessageSender": chatMessageData['sender'],
+      "recentMessageSender": chatMessageData['email'],
       "recentMessageTime": chatMessageData['time'],
     });
   }

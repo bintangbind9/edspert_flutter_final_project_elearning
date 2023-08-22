@@ -1,3 +1,6 @@
+import 'package:edspert_flutter_final_project_elearning/data/model/firestore/group.dart';
+import 'package:edspert_flutter_final_project_elearning/presentation/dashboard/discussion/chat/chat_binding.dart';
+import 'package:edspert_flutter_final_project_elearning/presentation/dashboard/discussion/chat/chat_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../data/model/arguments/exercise_result_page_args.dart';
@@ -78,6 +81,12 @@ class Pages {
       page: () => const ProfileEditPage(),
       binding: ProfileEditBinding(),
       arguments: User,
+    ),
+    GetPage(
+      name: Routes.chatPage,
+      page: () => const ChatPage(),
+      binding: ChatBinding(),
+      arguments: GroupModel,
     )
   ];
 }
