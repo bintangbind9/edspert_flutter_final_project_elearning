@@ -85,7 +85,9 @@ class ChatPage extends GetView<ChatController> {
   void onSend(BuildContext context) {
     // final fileName = controller.selectedFile?.name;
     // debugPrint(fileName);
-    controller.sendChat(MessageModel(email: controller.senderEmail ?? 'Anonymous', message: controller.tecChatContent.text, time: Timestamp.now()));
-    controller.tecChatContent.text = '';
+    if (controller.tecChatContent.text.trim().isNotEmpty) {
+      controller.sendChat(MessageModel(email: controller.senderEmail ?? 'Anonymous', message: controller.tecChatContent.text, time: Timestamp.now()));
+      controller.tecChatContent.text = '';
+    }
   }
 }

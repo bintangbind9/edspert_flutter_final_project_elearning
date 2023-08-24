@@ -28,8 +28,7 @@ class ChatController extends GetxController {
   }
 
   @override
-  void onReady() async {
-    await Future.delayed(const Duration(seconds: 2));
+  void onReady() {
     retrieveMessages();
     super.onReady();
   }
